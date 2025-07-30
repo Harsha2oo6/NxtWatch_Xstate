@@ -6,8 +6,8 @@ import { observer } from "mobx-react-lite";
 import  {  useThemeMachine } from "./Components/ExternalWrapper";
 
 const App = observer(() => {
-  const { themeState,isDark } =useThemeMachine();
-  console.log(themeState)
+  const { isDark } =useThemeMachine();
+  
   return (
     <ThemeProvider theme={{ isDark }}>
       <GlobalStyle />

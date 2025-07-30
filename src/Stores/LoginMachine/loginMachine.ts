@@ -99,7 +99,7 @@ export const loginMachineConfig =createMachine(
             target: "idle",
 
             actions: assign(() => {
-                console.log("logout triggered")
+                // console.log("logout triggered")
               Cookies.remove("jwt_token");
               Cookies.remove("username");
               return {

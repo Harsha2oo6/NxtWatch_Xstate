@@ -16,6 +16,7 @@ import {
 import Loader from "../../Common/Loader";
 import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import RenderFailure from "../../Common/FailurePage";
+import { useDashboardMachine } from "../DashboardMachineWrapper";
 
 export const RenderHomeVideos = observer(() => {
   if (dashboard.isHomeLoading) {
@@ -41,9 +42,10 @@ export const RenderHomeVideos = observer(() => {
 
 
 const Home = observer(() => {
+  const {state,send}=useDashboardMachine();
   useEffect(() => {
-    if (dashboard.homeVideosArray.length === 0) {
-      dashboard.fetchHomeVideos();
+    if (state.context.homeVideosArray.length === 0) {
+      send({type:"FETCH_HOME"});
     }
   }, []);
 
@@ -54,10 +56,9 @@ const Home = observer(() => {
         <SearchInput
           placeholder="Search"
           type="search"
-          value={dashboard.searchQuery}
-          onChange={(e) => dashboard.setSearchQuery(e.target.value)}
+          onChange={(e) => send({type:'SET_QUERY',value:e.target.value})}
         />
-        <SearchButton onClick={() => dashboard.fetchHomeVideos(true)}>
+        <SearchButton onClick={()=>send({type:"FETCH_HOME"})}>
           <SearchIcon />
         </SearchButton>
       </SearchWrapper>

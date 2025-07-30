@@ -14,7 +14,7 @@ export const LoginContext = createContext<{
 const LoginMachinewrapper = ({ children }: any) => {
   const [loginState, send] = useMachine(loginMachineConfig);
 
-  console.log({loginState})
+  // console.log({loginState})
   return (
     <LoginContext.Provider value={{ loginState, send }}>
       {children}
