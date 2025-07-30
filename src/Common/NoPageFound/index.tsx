@@ -1,5 +1,5 @@
 
-import { themeStore } from '../../Stores/ThemeStore/themeStore';
+import { useThemeMachine } from '../../Components/ExternalWrapper';
 import { PagenotfoundDark, PagenotfoundLight } from '../Images';
 import {
   PageContainer,
@@ -9,9 +9,10 @@ import {
   Paragraph} from './styledComponents' 
 
 const PageNotFound = () => {
+    const {isDark}=useThemeMachine()
  
 
-  const imageUrl = themeStore.isDark
+  const imageUrl = isDark
     ? PagenotfoundDark
     : PagenotfoundLight;
 

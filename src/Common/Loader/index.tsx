@@ -1,6 +1,6 @@
 import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
-import { themeStore } from "../../Stores/ThemeStore/themeStore";
+import { useThemeMachine } from "../../Components/ExternalWrapper";
 
 const LoaderWrapper = styled.div`
   min-height: 50vh; 
@@ -12,9 +12,10 @@ const LoaderWrapper = styled.div`
 `;
 
 const Loader = () => {
+    const {isDark}=useThemeMachine()
   return (
     <LoaderWrapper>
-      <BeatLoader size={13} color={themeStore.theme === "dark" ? "white" : "#000"} />
+      <BeatLoader size={13} color={isDark ? "white" : "#000"} />
     </LoaderWrapper>
   );
 };

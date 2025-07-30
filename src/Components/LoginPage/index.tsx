@@ -13,16 +13,17 @@ import {
   ShowPassWrapper,
   LabelElement,
 } from "./styledComponents";
-import { themeStore } from "../../Stores/ThemeStore/themeStore";
 import { DarkThemeLogo, LightThemeLogo } from "../../Common/Images";
 import ThemeTogler from "../../Common/ThemeToggler";
 import { useLoginMachine } from "../LoginMachineWrapper";
 import { useNavigate } from "react-router-dom";
+import { useThemeMachine } from "../ExternalWrapper";
 
 const LoginPage = observer(() => {
   const navigate = useNavigate();
   const { loginState, send } = useLoginMachine();
-  console.log({ loginState }, "login state in login page");
+  const { isDark } = useThemeMachine();
+
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     send({ type: "LOGIN" });
@@ -37,7 +38,7 @@ const LoginPage = observer(() => {
       </Modetoggler>
       <FormWrapper onSubmit={handleLogin}>
         <LoginLogo
-          src={themeStore.isDark ? DarkThemeLogo : LightThemeLogo}
+          src={isDark ? DarkThemeLogo : LightThemeLogo}
           alt="Nxtwatch"
         />
         <InputWrapper>
