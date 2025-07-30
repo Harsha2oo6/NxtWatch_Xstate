@@ -7,7 +7,8 @@ import ProtectedRoute from "../Hocs/ProtectedRoute";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={LoginPath} element={<LoginPage/>}/>
+   <Route path={LoginPath} element={   <LoginPage/>}/>
+      
       {PathArray.map((each) => {
         return (
           <Route

@@ -72,7 +72,7 @@ export const loginMachineConfig =createMachine(
             return context;
           },
           onDone: {
-            target: "success",
+            target: "LoggedIn",
             actions: assign({
               token: ({ event, context }) => {
                 Cookies.set("jwt_token", event.output.jwt_token);
@@ -86,18 +86,20 @@ export const loginMachineConfig =createMachine(
             actions: assign({
               error: ({ event }) => {
                 console.log({ event });
-                return "abc";
+                return( event.error as any)?.error_msg;
               },
             }),
           },
         },
       },
 
-      success: {
+      LoggedIn: {
         on: {
           LOGOUT: {
             target: "idle",
+
             actions: assign(() => {
+                console.log("logout triggered")
               Cookies.remove("jwt_token");
               Cookies.remove("username");
               return {
@@ -111,6 +113,7 @@ export const loginMachineConfig =createMachine(
           },
         },
       },
+
     },
   }
 );

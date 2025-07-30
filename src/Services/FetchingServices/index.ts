@@ -1,10 +1,12 @@
-import { loginStore } from "../../Stores/LoginStore/loginstore";
+import { useLoginMachine } from "../../Components/LoginMachineWrapper";
+
 
 export const FetchDetails = async (url: string) => {
+  const {loginState}=useLoginMachine()
   const options = {
   method: "GET",
   headers: {
-    Authorization: `Bearer ${loginStore.getToken()}`,
+    Authorization: `Bearer ${loginState.context.token}`,
   },
 };
   const fetchedData = await fetch(url, options);

@@ -1,15 +1,22 @@
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
-import { loginStore } from "../../Stores/LoginStore/loginstore";
 import type { ReactNode } from "react";
 import { ModalWrapper, PopupButton, RowDiv, Sure } from "./styledComponents";
 import { MenuButton } from "../MobileNavigator/styledComponents";
 import { LogoutIcon } from "../../Common/Icons";
+import { useLoginMachine } from "../LoginMachineWrapper";
+import {  useNavigate } from "react-router-dom";
 
 const LogoutPopup = observer(() => {
   const navigate = useNavigate();
+  const {loginState,send}=useLoginMachine()
 
+  const handleLogout=()=>{
+    console.log("logingout")
+    console.log({loginState,send})
+    send({type:'LOGOUT'})
+    navigate('/login',{replace:true})
+  }
   return (
     <Popup
       modal
@@ -28,10 +35,7 @@ const LogoutPopup = observer(() => {
               Cancel
             </PopupButton>
             <PopupButton className="confirm"
-              onClick={() => {
-                loginStore.logout();
-                navigate("/login", { replace: true });
-              }}
+              onClick={handleLogout}
             >
               Confirm
             </PopupButton>

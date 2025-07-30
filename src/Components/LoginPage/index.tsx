@@ -1,7 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { type FormEvent } from "react";
-import { loginStore } from "../../Stores/LoginStore/loginstore";
-import { useNavigate } from "react-router-dom";
 import {
   FormWrapper,
   LoginButton,
@@ -18,20 +16,20 @@ import {
 import { themeStore } from "../../Stores/ThemeStore/themeStore";
 import { DarkThemeLogo, LightThemeLogo } from "../../Common/Images";
 import ThemeTogler from "../../Common/ThemeToggler";
+import { useLoginMachine } from "../LoginMachineWrapper";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = observer(() => {
-  const [state, send] = useLoginMachine();
-
-
   const navigate = useNavigate();
-  if (loginStore.getToken() !== "") {
-    navigate("/", { replace: true });
-  }
+  const { loginState, send } = useLoginMachine();
+  console.log({ loginState }, "login state in login page");
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    // console.log("inputs sent");
     send({ type: "LOGIN" });
   };
+  if (loginState.matches("LoggedIn")) {
+    navigate("/", { replace: true });
+  }
   return (
     <LoginPageWrapper>
       <Modetoggler>
@@ -48,28 +46,34 @@ const LoginPage = observer(() => {
             type="text"
             id="username"
             placeholder="Username"
-            onChange={(e)=>send({type:"SET_USERNAME",value:e.target.value})}
+            onChange={(e) =>
+              send({ type: "SET_USERNAME", value: e.target.value })
+            }
           />
         </InputWrapper>
         <InputWrapper>
           <LabelElement htmlFor="password">PASSWORD</LabelElement>
           <LoginIputBar
-            type={state.context.showPassword? "text" : "password"}
+            type={loginState.context.showPassword ? "text" : "password"}
             placeholder="Password"
             id="password"
-            onChange={(e)=>send({type:"SET_PASSWORD",value:e.target.value})}
+            onChange={(e) =>
+              send({ type: "SET_PASSWORD", value: e.target.value })
+            }
           />
         </InputWrapper>
         <ShowPassWrapper>
           <CheckBox
             id="showpass"
             type="checkbox"
-            onChange={()=>send({type:'SHOW_PASSWORD'})}
+            onChange={() => send({ type: "SHOW_PASSWORD" })}
           />
           <LabelElement htmlFor="showpass">Show Password</LabelElement>
         </ShowPassWrapper>
         <LoginButton type="submit">Login</LoginButton>
-        {loginStore.error && <ErrorTag>{loginStore.error}</ErrorTag>}
+        {loginState.context.error && (
+          <ErrorTag>{loginState.context.error}</ErrorTag>
+        )}
       </FormWrapper>
     </LoginPageWrapper>
   );
