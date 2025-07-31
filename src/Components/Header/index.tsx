@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import {
   HeaderWrapper,
@@ -17,11 +16,9 @@ import MobileNavigator from "../MobileNavigator";
 import { useContext } from "react";
 import { Context } from "../ExternalWrapper";
 
-
-
-const Header=  observer(() => {
+const Header = () => {
   const navigate = useNavigate();
-  const {isDark} = useContext(Context)
+  const { isDark } = useContext(Context);
   return (
     <HeaderWrapper>
       <LogoImage
@@ -32,11 +29,11 @@ const Header=  observer(() => {
       <ActionsWrapper>
         <ThemeTogler />
         <ProfileImg src={ProfileImage} alt="profile" />
-        <MobileNavigator/>
+        <MobileNavigator />
         <LogoutPopup />
       </ActionsWrapper>
     </HeaderWrapper>
   );
-});
+};
 
 export default Header;

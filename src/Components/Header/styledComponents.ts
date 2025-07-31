@@ -16,13 +16,13 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width:120px;
-  height:30px;
+  width: 120px;
+  height: 30px;
   cursor: pointer;
   @media screen and (min-width: 577px) and (max-width: 768px) {
-  width:150px;
-  height:50px;
-}
+    width: 150px;
+    height: 50px;
+  }
 `;
 
 export const ProfileImg = styled.img`
@@ -30,16 +30,16 @@ export const ProfileImg = styled.img`
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
-  display:none;
-  @media screen and (min-width:768px){
-  display:block}
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 `;
 
 export const ActionsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  
 `;
 
 // export const LogoutButton = styled.button`

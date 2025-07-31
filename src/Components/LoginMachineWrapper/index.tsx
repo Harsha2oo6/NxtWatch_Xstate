@@ -5,7 +5,6 @@ import { useContext, createContext } from "react";
 export const LoginContext = createContext<{
   loginState: any;
   send: (event: any) => void;
- 
 }>({
   loginState: null,
   send: () => {},
@@ -14,7 +13,6 @@ export const LoginContext = createContext<{
 const LoginMachinewrapper = ({ children }: any) => {
   const [loginState, send] = useMachine(loginMachineConfig);
 
-  // console.log({loginState})
   return (
     <LoginContext.Provider value={{ loginState, send }}>
       {children}

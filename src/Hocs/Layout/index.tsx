@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import Header from "../../Components/Header";
 import SideNavBar from "../../Components/Sidenavbar";
 import { LayoutWrapper, NavContentWrapper } from "./styledComponents";
@@ -10,7 +9,7 @@ import DashboardMachineWrapper from "../../Components/DashboardMachineWrapper";
 type props = {
   children: JSX.Element;
 };
-const Layout = observer(({ children }: props) => {
+const Layout = ({ children }: props) => {
   const location = useLocation();
   const isLogged = location.pathname !== "/login";
 
@@ -31,5 +30,5 @@ const Layout = observer(({ children }: props) => {
       </DashboardMachineWrapper>
     </LoginMachinewrapper>
   );
-});
+};
 export default Layout;

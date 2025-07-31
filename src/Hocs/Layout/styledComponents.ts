@@ -22,7 +22,6 @@ export const LayoutWrapper = styled.div`
   margin: 0;
   padding: 0;
   height: 100vh;
-  
 `;
 export const NavContentWrapper = styled.div`
   display: flex;
@@ -32,16 +31,17 @@ export const NavContentWrapper = styled.div`
     flex: 1;
     overflow-y: auto;
 
-    scrollbar-width: thin; 
-    scrollbar-color: grey ${({ theme }) => (theme.isDark ? '#3c3c3c' : '#f8f8f4')};
-
+    scrollbar-width: thin;
+    scrollbar-color: grey
+      ${({ theme }) => (theme.isDark ? "#3c3c3c" : "#f8f8f4")};
 
     &::-webkit-scrollbar {
       width: 8px;
     }
 
     &::-webkit-scrollbar-track {
-      background-color: ${({ theme }) => (theme.isDark ? '#3c3c3c' : '#f8f8f4')};
+      background-color: ${({ theme }) =>
+        theme.isDark ? "#3c3c3c" : "#f8f8f4"};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -49,6 +49,5 @@ export const NavContentWrapper = styled.div`
       border-radius: 10px;
       transition: background-color 0.3s ease;
     }
-
   }
 `;

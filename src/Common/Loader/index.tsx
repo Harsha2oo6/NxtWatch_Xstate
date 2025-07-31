@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useThemeMachine } from "../../Components/ExternalWrapper";
 
 const LoaderWrapper = styled.div`
-  min-height: 50vh; 
+  min-height: 50vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ const LoaderWrapper = styled.div`
 `;
 
 const Loader = () => {
-    const {isDark}=useThemeMachine()
+  const { isDark } = useThemeMachine();
   return (
     <LoaderWrapper>
       <BeatLoader size={13} color={isDark ? "white" : "#000"} />

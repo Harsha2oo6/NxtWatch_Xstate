@@ -12,47 +12,47 @@ export const TrendingPath = "/trending";
 export const GamingPath = "/gaming";
 export const SavedPath = "/saved";
 export const VideoDetailsPath = "/videos/:id";
-export const NopageFoundPath='*';
+export const NopageFoundPath = "*";
 
 import type { ReactNode } from "react";
 
 export const PathArray = [
   {
     path: HomePath,
-    name:"Home",
+    name: "Home",
     component: <Home />,
-    icon:<HomeIcon/>
+    icon: <HomeIcon />,
   },
   {
     path: TrendingPath,
-    name:"Trending",
+    name: "Trending",
     component: <Trending />,
-    icon:<TrendingIcon/>
+    icon: <TrendingIcon />,
   },
   {
     path: GamingPath,
-    name:"Gaming",
+    name: "Gaming",
     component: <Gaming />,
-    icon:<GamingIcon/>
+    icon: <GamingIcon />,
   },
   {
     path: SavedPath,
-    name:"Saved Videos",
+    name: "Saved Videos",
     component: <SavedVideos />,
-    icon:<SavedIcon/>
+    icon: <SavedIcon />,
   },
   {
     path: VideoDetailsPath,
-    name:"VideoDetails",
+    name: "VideoDetails",
     component: <VideoDetails />,
-    icon:null
+    icon: null,
   },
   {
-    path:NopageFoundPath,
-    name:"Nopagefound",
-    component:<NopageFound/>,
-    icon:null
-  }
+    path: NopageFoundPath,
+    name: "Nopagefound",
+    component: <NopageFound />,
+    icon: null,
+  },
 ];
 export type NavItem = {
   path: string;
@@ -60,4 +60,4 @@ export type NavItem = {
   component: ReactNode;
   icon: ReactNode;
 };
-export const navItems = PathArray.filter(item => item.icon);
+export const navItems = PathArray.filter((item) => item.icon);

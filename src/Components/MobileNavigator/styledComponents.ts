@@ -1,23 +1,22 @@
 // styledComponents.ts
-import styled from 'styled-components';
-import { ThemeButton } from '../../Common/ThemeToggler/styledComponents';
+import styled from "styled-components";
+import { ThemeButton } from "../../Common/ThemeToggler/styledComponents";
 
-export const MenuButton=styled(ThemeButton)`
-display:none;
-margin-bottom:3px;
-font-size:25px;
- @media screen and (max-width:768px){
-  display : block;
+export const MenuButton = styled(ThemeButton)`
+  display: none;
+  margin-bottom: 3px;
+  font-size: 25px;
+  @media screen and (max-width: 768px) {
+    display: block;
   }
   @media screen and (min-width: 577px) and (max-width: 768px) {
-  font-size: 35px;
-}
-`
+    font-size: 35px;
+  }
+`;
 export const Menu = styled.div`
-
-  background-color: ${({ theme }) => (theme.isDark ? '#2c2c2c' : 'white')};
-  color: ${({ theme }) => (theme.isDark ? '#fff' : '#000')};
-  border: 1px solid ${({ theme }) => (theme.isDark ? 'grey' : '#dcdcdc')};
+  background-color: ${({ theme }) => (theme.isDark ? "#2c2c2c" : "white")};
+  color: ${({ theme }) => (theme.isDark ? "#fff" : "#000")};
+  border: 1px solid ${({ theme }) => (theme.isDark ? "grey" : "#dcdcdc")};
   border-radius: 5px;
   padding: 10px 0;
   width: 150px;
@@ -25,8 +24,6 @@ export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 10;
-  
- 
 `;
 
 export const MenuItem = styled.p`
@@ -35,7 +32,6 @@ export const MenuItem = styled.p`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) =>
-      theme.isDark ? '#181818' : '#f1f1f1'};
+    background-color: ${({ theme }) => (theme.isDark ? "#181818" : "#f1f1f1")};
   }
 `;

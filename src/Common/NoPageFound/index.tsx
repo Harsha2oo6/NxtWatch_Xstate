@@ -1,20 +1,17 @@
-
-import { useThemeMachine } from '../../Components/ExternalWrapper';
-import { PagenotfoundDark, PagenotfoundLight } from '../Images';
+import { useThemeMachine } from "../../Components/ExternalWrapper";
+import { PagenotfoundDark, PagenotfoundLight } from "../Images";
 import {
   PageContainer,
   NoPageImage,
   TextContainer,
   Heading,
-  Paragraph} from './styledComponents' 
+  Paragraph,
+} from "./styledComponents";
 
 const PageNotFound = () => {
-    const {isDark}=useThemeMachine()
- 
+  const { isDark } = useThemeMachine();
 
-  const imageUrl = isDark
-    ? PagenotfoundDark
-    : PagenotfoundLight;
+  const imageUrl = isDark ? PagenotfoundDark : PagenotfoundLight;
 
   return (
     <PageContainer>

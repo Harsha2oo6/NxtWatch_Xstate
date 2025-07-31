@@ -21,8 +21,8 @@ export const HomeThumbnail = styled.img`
   height: 60%;
   display: block;
   @media screen and (min-width: 577px) and (max-width: 768px) {
-  height:50%;
-}
+    height: 50%;
+  }
 `;
 export const BottomRow = styled.div`
   display: flex;
@@ -35,9 +35,9 @@ export const BottomRow = styled.div`
 `;
 export const ChannelDetails = styled.div`
   display: flex;
-  flex-direction:column;
-  @media screen and (max-width:576px){
-  flex-direction:row;
+  flex-direction: column;
+  @media screen and (max-width: 576px) {
+    flex-direction: row;
   }
 `;
 export const ChannelProfile = styled.img`
@@ -59,9 +59,9 @@ export const VideoTitle = styled.p`
   line-height: 1.4;
   margin: 0 0 6px 0;
   @media screen and (min-width: 577px) and (max-width: 768px) {
-  font-size: 10px;
-  font-weight:400;
-}
+    font-size: 10px;
+    font-weight: 400;
+  }
 `;
 
 export const ChannelName = styled.p`
@@ -70,8 +70,8 @@ export const ChannelName = styled.p`
   color: ${({ theme }) => (theme.isDark ? "#666a7f" : "#606060")};
   margin: 0px 10px 10px 0px;
   @media screen and (min-width: 577px) and (max-width: 768px) {
-  font-size: 10px;
-}
+    font-size: 10px;
+  }
 `;
 
 export const VideoViews = styled.div`

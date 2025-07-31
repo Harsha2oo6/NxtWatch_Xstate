@@ -1,9 +1,9 @@
- export type Channel = {
+export type Channel = {
   name: string;
   profile_image_url: string;
 };
 
- export type Video = {
+export type Video = {
   id: string;
   title: string;
   thumbnail_url: string;

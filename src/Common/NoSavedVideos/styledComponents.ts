@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const NoSaveWrapper = styled.div`
-  width:100%;
-  height:90%;
+  width: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   text-align: center;
   padding: 20px;
-  @media screen and (max-width:576px){
-  height:80%;
+  @media screen and (max-width: 576px) {
+    height: 80%;
   }
 `;
 

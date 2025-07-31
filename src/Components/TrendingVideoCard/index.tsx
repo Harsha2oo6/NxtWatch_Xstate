@@ -19,7 +19,8 @@ type Props = {
 
 const TrendingVideoCard = ({ details }: Props) => {
   const navigate = useNavigate();
-  const { id, channel, published_at, title, thumbnail_url, view_count } = details;
+  const { id, channel, published_at, title, thumbnail_url, view_count } =
+    details;
   const { profile_image_url, name } = channel;
 
   return (
@@ -36,7 +37,9 @@ const TrendingVideoCard = ({ details }: Props) => {
             <TrendingChannelName>{name}</TrendingChannelName>
             <VideoViews>
               <TrendingChannelName>{view_count} Views</TrendingChannelName>
-              <TrendingChannelName>● {DurationFinder(published_at)}</TrendingChannelName>
+              <TrendingChannelName>
+                ● {DurationFinder(published_at)}
+              </TrendingChannelName>
             </VideoViews>
           </ChannelDetails>
         </div>

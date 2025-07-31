@@ -4,23 +4,23 @@ import {
   SubHeading,
   Description,
   FailureWrapper,
-} from './styledComponents';
-import { RetryButton } from '../NoVideosFound/styledComponents';
-import { useThemeMachine } from '../../Components/ExternalWrapper';
+} from "./styledComponents";
+import { RetryButton } from "../NoVideosFound/styledComponents";
+import { useThemeMachine } from "../../Components/ExternalWrapper";
 
 type RenderFailureProps = {
   onRetry: () => void;
 };
 
 const RenderFailure = ({ onRetry }: RenderFailureProps) => {
-  const {isDark}=useThemeMachine()
+  const { isDark } = useThemeMachine();
   return (
     <FailureWrapper>
       <FailureImage
         src={
           isDark
-            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
-            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+            ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+            : "https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         }
         alt="failed"
       />

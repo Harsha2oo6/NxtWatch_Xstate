@@ -14,13 +14,12 @@ export const RenderNavlinks = ({ navItems }: { navItems: NavItem[] }) => {
 };
 
 const SideNavBar = () => {
-    
   return (
     <SideNavbarWrapper>
       <NavItemsWrapper>
-        <RenderNavlinks navItems={navItems}/>
+        <RenderNavlinks navItems={navItems} />
       </NavItemsWrapper>
-      <Footer/>
+      <Footer />
     </SideNavbarWrapper>
   );
 };

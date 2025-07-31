@@ -8,7 +8,6 @@ export const GamingCard = styled.div`
   @media screen and (max-width: 576px) {
     width: 47%;
   }
-   
 `;
 export const GamingThumbnail = styled.img`
   width: 100%;

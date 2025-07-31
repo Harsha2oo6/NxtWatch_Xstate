@@ -31,11 +31,11 @@ const HomeVideoCard = ({ details }: { details: Video }) => {
         <VideoTexts>
           <VideoTitle>{title}</VideoTitle>
           <ChannelDetails>
-          <ChannelName>{name}</ChannelName>
-          <VideoViews>
-            <ChannelName>{view_count} views</ChannelName>
-            <ChannelName>● {DurationFinder(published_at)}</ChannelName>
-          </VideoViews>
+            <ChannelName>{name}</ChannelName>
+            <VideoViews>
+              <ChannelName>{view_count} views</ChannelName>
+              <ChannelName>● {DurationFinder(published_at)}</ChannelName>
+            </VideoViews>
           </ChannelDetails>
         </VideoTexts>
       </BottomRow>

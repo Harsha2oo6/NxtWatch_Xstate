@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { observer } from "mobx-react-lite";
 
 import Advertisement from "../Advertisement";
 import HomeVideoCard from "../HomeVideoCard";
@@ -17,7 +16,7 @@ import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import RenderFailure from "../../Common/FailurePage";
 import { useDashboardMachine } from "../DashboardMachineWrapper";
 
-export const RenderHomeVideos = observer(({ state }:any) => {
+export const RenderHomeVideos = ({ state }: any) => {
   const { homeVideosArray, homeError } = state.context;
 
   if (state.matches({ home: "loading" })) {
@@ -25,7 +24,11 @@ export const RenderHomeVideos = observer(({ state }:any) => {
   }
 
   if (homeError) {
-    return <RenderFailure onRetry={() => state._session.send({ type: "FETCH_HOME" })} />;
+    return (
+      <RenderFailure
+        onRetry={() => state._session.send({ type: "FETCH_HOME" })}
+      />
+    );
   }
 
   if (homeVideosArray.length === 0) {
@@ -39,10 +42,9 @@ export const RenderHomeVideos = observer(({ state }:any) => {
       ))}
     </HomeVideos>
   );
-});
+};
 
-
-const Home = observer(() => {
+const Home = () => {
   const { state, send } = useDashboardMachine();
 
   useEffect(() => {
@@ -67,5 +69,5 @@ const Home = observer(() => {
       <RenderHomeVideos state={state} />
     </PageWrapper>
   );
-});
-export default Home
+};
+export default Home;

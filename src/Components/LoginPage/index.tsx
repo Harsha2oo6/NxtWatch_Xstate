@@ -1,4 +1,3 @@
-import { observer } from "mobx-react-lite";
 import { type FormEvent } from "react";
 import {
   FormWrapper,
@@ -19,7 +18,7 @@ import { useLoginMachine } from "../LoginMachineWrapper";
 import { useNavigate } from "react-router-dom";
 import { useThemeMachine } from "../ExternalWrapper";
 
-const LoginPage = observer(() => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const { loginState, send } = useLoginMachine();
   const { isDark } = useThemeMachine();
@@ -78,5 +77,5 @@ const LoginPage = observer(() => {
       </FormWrapper>
     </LoginPageWrapper>
   );
-});
+};
 export default LoginPage;

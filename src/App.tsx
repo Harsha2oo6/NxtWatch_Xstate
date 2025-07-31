@@ -2,12 +2,11 @@ import { ThemeProvider } from "styled-components";
 import Layout from "./Hocs/Layout";
 import { GlobalStyle } from "./Hocs/Layout/styledComponents";
 import AppRoutes from "./Routes";
-import { observer } from "mobx-react-lite";
-import  {  useThemeMachine } from "./Components/ExternalWrapper";
+import { useThemeMachine } from "./Components/ExternalWrapper";
 
-const App = observer(() => {
-  const { isDark } =useThemeMachine();
-  
+const App = () => {
+  const { isDark } = useThemeMachine();
+
   return (
     <ThemeProvider theme={{ isDark }}>
       <GlobalStyle />
@@ -16,6 +15,6 @@ const App = observer(() => {
       </Layout>
     </ThemeProvider>
   );
-});
+};
 
 export default App;

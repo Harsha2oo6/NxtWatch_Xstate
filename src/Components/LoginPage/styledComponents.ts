@@ -47,16 +47,16 @@ export const LoginIputBar = styled.input`
   background-color: transparent;
   color: ${({ theme }) => (theme.isDark ? "#ffffff" : "#000000")};
   font-size: 14px;
-  margin-top:6px;
+  margin-top: 6px;
 `;
 
 export const ShowPassWrapper = styled.div`
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   align-self: start;
   gap: 8px;
-  height:30px;
+  height: 30px;
   margin-top: -8px;
   margin-bottom: -5px;
 `;
@@ -84,7 +84,7 @@ export const LoginButton = styled.button`
 `;
 
 export const Modetoggler = styled.div`
-width:50px;
+  width: 50px;
   position: fixed;
   top: 24px;
   right: 24px;
@@ -94,9 +94,9 @@ width:50px;
   box-shadow: 0px 0px 5px 0px grey;
   cursor: pointer;
   font-size: 14px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ErrorTag = styled.p`

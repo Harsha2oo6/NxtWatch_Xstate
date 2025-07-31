@@ -1,5 +1,9 @@
 import { PathArray } from "../../Constants/Paths";
-import { IconContainer, RouteHeaderWrapper, RouteName } from "./styledComponents";
+import {
+  IconContainer,
+  RouteHeaderWrapper,
+  RouteName,
+} from "./styledComponents";
 
 type Props = {
   routeName: string;
@@ -14,8 +18,8 @@ const RouteHeader = ({ routeName }: Props) => {
 
   return (
     <RouteHeaderWrapper>
-      <IconContainer >{icon}</IconContainer>
-      <RouteName >{name}</RouteName>
+      <IconContainer>{icon}</IconContainer>
+      <RouteName>{name}</RouteName>
     </RouteHeaderWrapper>
   );
 };

@@ -5,7 +5,7 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: ${({theme})=>theme.isDark?'#212121':'white'};
+  background-color: ${({ theme }) => (theme.isDark ? "#212121" : "white")};
   border-radius: 5px;
   width: 350px;
   height: 200px;
@@ -24,7 +24,7 @@ export const PopupButton = styled.button`
   }
 
   &.logout {
-  display:none;
+    display: none;
     border: 2px solid
       ${({ theme }) => (theme.isDark ? "white" : "rgb(68, 119, 238)")};
     color: ${({ theme }) => (theme.isDark ? "white" : "rgb(68, 119, 238)")};
@@ -36,15 +36,15 @@ export const PopupButton = styled.button`
       color: ${({ theme }) => (theme.isDark ? "black" : "white")};
       transform: none;
     }
-      @media screen and (min-width:768px){
-      display:block;
-      }
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
   }
 
   &.close {
     background-color: transparent;
-    border: 2px solid ${({theme})=>theme.isDark?'#8a98ab':'#8696a8'} ;
-    color:  ${({theme})=>theme.isDark?'#8a98ab':'#8696a8'};
+    border: 2px solid ${({ theme }) => (theme.isDark ? "#8a98ab" : "#8696a8")};
+    color: ${({ theme }) => (theme.isDark ? "#8a98ab" : "#8696a8")};
   }
   &.confirm {
     background-color: #2082f2;
@@ -56,6 +56,6 @@ export const RowDiv = styled.div`
   display: flex;
   flex: row;
 `;
-export const Sure=styled.p`
-color:${({theme})=>theme.isDark?'#f1f2f4':'#173870'}
-`
+export const Sure = styled.p`
+  color: ${({ theme }) => (theme.isDark ? "#f1f2f4" : "#173870")};
+`;

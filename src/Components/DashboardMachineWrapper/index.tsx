@@ -9,7 +9,7 @@ export const Dashboardcontext = createContext<{
 
 const DashboardMachineWrapper = ({ children }: any) => {
   const [state, send] = useMachine(dashboardMachineConfig);
-  // console.log(state);
+
   return (
     <Dashboardcontext.Provider value={{ state, send }}>
       {children}

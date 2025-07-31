@@ -1,4 +1,9 @@
-import { NoSaveWrapper, NoSavedImage, Heading, Paragraph } from "./styledComponents";
+import {
+  NoSaveWrapper,
+  NoSavedImage,
+  Heading,
+  Paragraph,
+} from "./styledComponents";
 
 const NoSavedVideos = () => {
   return (

@@ -6,7 +6,7 @@ export const VideoDescription = styled.div`
   background-color: ${({ theme }) => (theme.isDark ? "#1f201b" : "#f9f9f9")};
 
   @media screen and (max-width: 576px) {
-    padding:0;
+    padding: 0;
   }
 `;
 
@@ -16,7 +16,7 @@ export const DescriptionTop = styled.div`
   padding: 20px 0 0;
 
   @media screen and (max-width: 576px) {
-    padding: 10px  15px;
+    padding: 10px 15px;
   }
 `;
 
@@ -42,7 +42,7 @@ export const DescriptionDate = styled.div`
   @media screen and (max-width: 576px) {
     justify-content: flex-start;
     gap: 20px;
-    width:70%
+    width: 70%;
   }
 `;
 
@@ -65,17 +65,16 @@ export const ProfileDes = styled.div`
 `;
 
 export const VideoDes = styled.p`
-
   margin-top: 15px;
   line-height: 1.5;
   color: ${({ theme }) => (theme.isDark ? "#efececff" : "#6a7587")};
   font-size: 14px;
 
-   @media screen and (max-width: 576px) {
-    margin-left:-60px;
-    font-weight:400;
-    font-size:18px;
-    padding:10px ;
+  @media screen and (max-width: 576px) {
+    margin-left: -60px;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px;
   }
 `;
 
@@ -86,7 +85,7 @@ export const VideoTitle = styled.h4`
 
   @media screen and (max-width: 576px) {
     font-size: 20px;
-    line-height:30px;
+    line-height: 30px;
   }
 `;
 
@@ -146,6 +145,5 @@ export const LikeDiv = styled.div`
   @media screen and (max-width: 576px) {
     font-size: 18px;
     justify-content: flex-start;
-    
   }
 `;
