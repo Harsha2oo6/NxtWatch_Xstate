@@ -1,6 +1,11 @@
 import { assign, createMachine, fromPromise } from "xstate";
 import { FetchDetails } from "../../Services/FetchingServices";
-import { HomeVideosApi } from "../../Constants/Apis";
+import {
+  GamingVideosApi,
+  HomeVideosApi,
+  TrendingVideosApi,
+  VideoDetailsApi,
+} from "../../Constants/Apis";
 
 export type Channel = {
   name: string;
@@ -49,11 +54,11 @@ type DashboardEvent =
   | { type: "FETCH_GAMING" }
   | { type: "FETCH_DETAILS"; id: string }
   | { type: "SET_QUERY"; value: string }
-  | { type: "ADD_SAVED" }
+  | { type: "ADD_SAVED" ; details:any }
   | { type: "REMOVE_SAVED"; id: string };
 export const dashboardMachineConfig = createMachine({
   id: "dasboardMachine",
-  type:'parallel',
+  type: "parallel",
   context: {
     searchQuery: "",
     homeVideosArray: [],
@@ -73,6 +78,16 @@ export const dashboardMachineConfig = createMachine({
         return { searchQuery: event.value };
       }),
     },
+    ADD_SAVED:{
+      actions: assign(({context,event})=>{
+          return {savedVideosArray: [...context.savedVideosArray,event.details]}
+      })
+    },
+    REMOVE_SAVED:{
+      actions:assign(({context,event})=>{
+        return {savedVideosArray: context.savedVideosArray.filter((each)=>each.id!== event.id)}
+      })
+    }
   },
   states: {
     home: {
@@ -86,11 +101,9 @@ export const dashboardMachineConfig = createMachine({
         loading: {
           invoke: {
             src: fromPromise(async ({ input }: { input: DashboardContext }) => {
-              console.log({ input }, "context in logging api call");
               return FetchDetails(`${HomeVideosApi}${input.searchQuery}`);
             }),
             input: ({ context }) => {
-              console.log({ context }, "context in input");
               return context;
             },
             onDone: {
@@ -98,11 +111,108 @@ export const dashboardMachineConfig = createMachine({
               actions: assign({
                 homeVideosArray: ({ event }) =>
                   (event.output as any).videos ?? [],
+                homeError: () => "",
               }),
             },
             onError: {
               target: "idle",
               actions: assign({ homeError: () => "failed" }),
+            },
+          },
+        },
+      },
+    },
+    trending: {
+      initial: "idle",
+      states: {
+        idle: {
+          on: {
+            FETCH_TRENDING: "loading",
+          },
+        },
+        loading: {
+          invoke: {
+            src: fromPromise(async () => {
+              return FetchDetails(TrendingVideosApi);
+            }),
+            onDone: {
+              target: "idle",
+              actions: assign({
+                trendingVideosArray: ({ event }) => {
+                  return (event.output as any).videos ?? [];
+                },
+                trendingError: () => "",
+              }),
+            },
+            onError: {
+              target: "idle",
+              actions: assign({ trendingError: () => "failed" }),
+            },
+          },
+        },
+      },
+    },
+    gaming: {
+      initial: "idle",
+      states: {
+        idle: {
+          on: {
+            FETCH_GAMING: "loading",
+          },
+        },
+        loading: {
+          invoke: {
+            src: fromPromise(async () => {
+              return FetchDetails(GamingVideosApi);
+            }),
+            onDone: {
+              target: "idle",
+              actions: assign({
+                gamingVideosArray: ({ event }) => {
+                  return (event.output as any).videos ?? [];
+                },
+                gamingError: () => "",
+              }),
+            },
+            onError: {
+              target: "idle",
+              actions: assign({ gamingError: () => "failed" }),
+            },
+          },
+        },
+      },
+    },
+    videoDetails: {
+      initial: "idle",
+      states: {
+        idle: {
+          on: {
+            FETCH_DETAILS: "loading",
+          },
+        },
+        loading: {
+          invoke: {
+            src: fromPromise(async ({ input }) => {
+              return FetchDetails(`${VideoDetailsApi}${input.id}`);
+            }),
+            input: ({ event }) => {
+              if (event.type === "FETCH_DETAILS") {
+                return { id: event.id };
+              }
+            },
+            onDone: {
+              target: "idle",
+              actions: assign({
+                videoDetails: ({ event }) => {
+                  console.log(event.output.video_details)
+                  return (event.output as any).video_details ?? null;
+                },
+                videoDetailsError: () => "",
+              }),
+            },
+            onError: {
+              target: "idle",
+              actions: assign({ videoDetailsError: () => "failed" }),
             },
           },
         },

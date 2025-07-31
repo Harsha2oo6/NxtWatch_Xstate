@@ -1,12 +1,12 @@
-import { useLoginMachine } from "../../Components/LoginMachineWrapper";
+import Cookies from "js-cookie";
 
 
 export const FetchDetails = async (url: string) => {
-  const {loginState}=useLoginMachine()
+  const jwt = Cookies.get('jwt_token')
   const options = {
   method: "GET",
   headers: {
-    Authorization: `Bearer ${loginState.context.token}`,
+    Authorization: `Bearer ${jwt}`,
   },
 };
   const fetchedData = await fetch(url, options);

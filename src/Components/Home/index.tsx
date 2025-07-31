@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite";
 import Advertisement from "../Advertisement";
 import HomeVideoCard from "../HomeVideoCard";
 import { SearchIcon } from "../../Common/Icons";
-import { dashboard } from "../../Stores/Dashboard/dashboard";
 
 import {
   HomeVideos,
@@ -18,22 +17,24 @@ import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import RenderFailure from "../../Common/FailurePage";
 import { useDashboardMachine } from "../DashboardMachineWrapper";
 
-export const RenderHomeVideos = observer(() => {
-  if (dashboard.isHomeLoading) {
+export const RenderHomeVideos = observer(({ state }:any) => {
+  const { homeVideosArray, homeError } = state.context;
+
+  if (state.matches({ home: "loading" })) {
     return <Loader />;
   }
 
-  if (dashboard.homeError !== "") {
-    return <RenderFailure onRetry={() => dashboard.fetchHomeVideos(true)} />;
+  if (homeError) {
+    return <RenderFailure onRetry={() => state._session.send({ type: "FETCH_HOME" })} />;
   }
 
-  if (dashboard.homeVideosArray.length === 0) {
+  if (homeVideosArray.length === 0) {
     return <RenderNoVideosView />;
   }
 
   return (
     <HomeVideos>
-      {dashboard.homeVideosArray.map((each: any) => (
+      {homeVideosArray.map((each: any) => (
         <HomeVideoCard key={each.id} details={each} />
       ))}
     </HomeVideos>
@@ -42,10 +43,11 @@ export const RenderHomeVideos = observer(() => {
 
 
 const Home = observer(() => {
-  const {state,send}=useDashboardMachine();
+  const { state, send } = useDashboardMachine();
+
   useEffect(() => {
     if (state.context.homeVideosArray.length === 0) {
-      send({type:"FETCH_HOME"});
+      send({ type: "FETCH_HOME" });
     }
   }, []);
 
@@ -56,15 +58,14 @@ const Home = observer(() => {
         <SearchInput
           placeholder="Search"
           type="search"
-          onChange={(e) => send({type:'SET_QUERY',value:e.target.value})}
+          onChange={(e) => send({ type: "SET_QUERY", value: e.target.value })}
         />
-        <SearchButton onClick={()=>send({type:"FETCH_HOME"})}>
+        <SearchButton onClick={() => send({ type: "FETCH_HOME" })}>
           <SearchIcon />
         </SearchButton>
       </SearchWrapper>
-        <RenderHomeVideos />
+      <RenderHomeVideos state={state} />
     </PageWrapper>
   );
 });
-
-export default Home;
+export default Home
