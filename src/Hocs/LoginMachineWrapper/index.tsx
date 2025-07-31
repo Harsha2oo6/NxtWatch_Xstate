@@ -1,6 +1,6 @@
 import { useMachine } from "@xstate/react";
 import { loginMachineConfig } from "../../Machines/LoginMachine/loginMachine";
-import { useContext, createContext } from "react";
+import {  createContext } from "react";
 
 export const LoginContext = createContext<{
   loginState: any;

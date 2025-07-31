@@ -5,7 +5,6 @@ import GamingView from "../GamingVideoCard";
 import Loader from "../../Common/Loader";
 import RenderFailure from "../../Common/FailurePage";
 import { GamingVideos } from "./styledComponents";
-import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 import { useSelector } from "@xstate/react";
@@ -30,7 +29,6 @@ export const RenderGamingVideos = ({ state, send }: any) => {
 };
 
 const Gaming = () => {
-  // const { state, send } = useDashboardMachine();
     const {dashboardActor}=useNxtwatchContext();
     const dashboardState=useSelector(dashboardActor,(state:any)=>state)
   useEffect(() => {

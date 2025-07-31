@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import ThemeMachine from "../../Machines/ThemeMachine/themeMachine";
 import { useActor } from "@xstate/react";
 

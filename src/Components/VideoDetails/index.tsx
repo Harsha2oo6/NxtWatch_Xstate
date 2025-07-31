@@ -20,7 +20,6 @@ import { DislikeIcon, LikeIcon, SavedIcon } from "../../Common/Icons";
 import { Para } from "../Footer/styledComponents";
 import Loader from "../../Common/Loader";
 import { DurationFinder } from "../../Services/DateFormating";
-import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import RenderFailure from "../../Common/FailurePage";
 import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 import { useSelector } from "@xstate/react";
@@ -32,7 +31,6 @@ const checkSaved = (id: any, state: any) => {
 };
 
 const VideoDetails = () => {
-  // const { state, send } = useDashboardMachine();
       const {dashboardActor}=useNxtwatchContext();
       const dashboardState=useSelector(dashboardActor,(state:any)=>state)
   const { videoDetails, videoDetailsError } = dashboardState.context;

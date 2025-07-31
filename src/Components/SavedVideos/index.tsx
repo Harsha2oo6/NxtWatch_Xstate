@@ -1,7 +1,6 @@
 import { useSelector } from "@xstate/react";
 import NoSavedVideos from "../../Common/NoSavedVideos";
 import RouteHeader from "../../Common/RouteHeader";
-import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 import { PageWrapper } from "../Home/styledWrapper";
 import { TrendingVideos } from "../Trending/styledComponents";
@@ -21,7 +20,6 @@ export const RenderSavedVideos = ({ videos }: any) => {
   );
 };
 const SavedVideos = () => {
-  // const { state } = useDashboardMachine();
     const {dashboardActor}=useNxtwatchContext();
     const dashboardState=useSelector(dashboardActor,(state:any)=>state)
   return (

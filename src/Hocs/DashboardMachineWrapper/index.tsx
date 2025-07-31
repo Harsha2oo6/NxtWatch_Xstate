@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import { useMachine } from "@xstate/react";
 import { dashboardMachineConfig } from "../../Machines/DashboardMachine/dashboardMachine";
 

@@ -14,7 +14,6 @@ import {
 import Loader from "../../Common/Loader";
 import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import RenderFailure from "../../Common/FailurePage";
-import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 import { useSelector } from "@xstate/react";
 
@@ -47,7 +46,6 @@ export const RenderHomeVideos = ({ state }: any) => {
 };
 
 const Home = () => {
-  // const { state, send } = useDashboardMachine();
   const {dashboardActor}=useNxtwatchContext();
   const dashboardState=useSelector(dashboardActor,(state:any)=>state)
 
