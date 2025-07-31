@@ -14,11 +14,12 @@ import ThemeTogler from "../../Common/ThemeToggler";
 import LogoutPopup from "../LogoutPopup";
 import MobileNavigator from "../MobileNavigator";
 import { useContext } from "react";
-import { Context } from "../ExternalWrapper";
+import { Context } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isDark } = useContext(Context);
+  const { isDark } = useNxtwatchContext()
   return (
     <HeaderWrapper>
       <LogoImage

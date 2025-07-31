@@ -3,17 +3,17 @@ import type { ReactNode } from "react";
 import { ModalWrapper, PopupButton, RowDiv, Sure } from "./styledComponents";
 import { MenuButton } from "../MobileNavigator/styledComponents";
 import { LogoutIcon } from "../../Common/Icons";
-import { useLoginMachine } from "../LoginMachineWrapper";
+import { useLoginMachine } from "../../Hocs/LoginMachineWrapper";
 import { useNavigate } from "react-router-dom";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 
 const LogoutPopup = () => {
   const navigate = useNavigate();
-  const { loginState, send } = useLoginMachine();
+  // const { loginState, send } = useLoginMachine();
+  const {loginActor}=useNxtwatchContext()
 
   const handleLogout = () => {
-    console.log("logingout");
-    console.log({ loginState, send });
-    send({ type: "LOGOUT" });
+    loginActor.send({ type: "LOGOUT" });
     navigate("/login", { replace: true });
   };
   return (

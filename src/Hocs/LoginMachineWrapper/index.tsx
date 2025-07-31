@@ -1,5 +1,5 @@
 import { useMachine } from "@xstate/react";
-import { loginMachineConfig } from "../../Stores/LoginMachine/loginMachine";
+import { loginMachineConfig } from "../../Machines/LoginMachine/loginMachine";
 import { useContext, createContext } from "react";
 
 export const LoginContext = createContext<{
@@ -22,5 +22,5 @@ const LoginMachinewrapper = ({ children }: any) => {
 export default LoginMachinewrapper;
 
 export const useLoginMachine = () => {
-  return useContext(LoginContext);
+  // return useContext(LoginContext);
 };

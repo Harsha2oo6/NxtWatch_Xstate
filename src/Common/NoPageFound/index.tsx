@@ -1,4 +1,4 @@
-import { useThemeMachine } from "../../Components/ExternalWrapper";
+import { useThemeMachine } from "../../Hocs/ExternalWrapper";
 import { PagenotfoundDark, PagenotfoundLight } from "../Images";
 import {
   PageContainer,

@@ -14,7 +14,9 @@ import {
 import Loader from "../../Common/Loader";
 import { RenderNoVideosView } from "../../Common/NoVideosFound";
 import RenderFailure from "../../Common/FailurePage";
-import { useDashboardMachine } from "../DashboardMachineWrapper";
+import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useSelector } from "@xstate/react";
 
 export const RenderHomeVideos = ({ state }: any) => {
   const { homeVideosArray, homeError } = state.context;
@@ -45,11 +47,13 @@ export const RenderHomeVideos = ({ state }: any) => {
 };
 
 const Home = () => {
-  const { state, send } = useDashboardMachine();
+  // const { state, send } = useDashboardMachine();
+  const {dashboardActor}=useNxtwatchContext();
+  const dashboardState=useSelector(dashboardActor,(state:any)=>state)
 
   useEffect(() => {
-    if (state.context.homeVideosArray.length === 0) {
-      send({ type: "FETCH_HOME" });
+    if (dashboardState.context.homeVideosArray.length === 0) {
+      dashboardActor.send({ type: "FETCH_HOME" });
     }
   }, []);
 
@@ -60,13 +64,13 @@ const Home = () => {
         <SearchInput
           placeholder="Search"
           type="search"
-          onChange={(e) => send({ type: "SET_QUERY", value: e.target.value })}
+          onChange={(e) => dashboardActor.send({ type: "SET_QUERY", value: e.target.value })}
         />
-        <SearchButton onClick={() => send({ type: "FETCH_HOME" })}>
+        <SearchButton onClick={() => dashboardActor.send({ type: "FETCH_HOME" })}>
           <SearchIcon />
         </SearchButton>
       </SearchWrapper>
-      <RenderHomeVideos state={state} />
+      <RenderHomeVideos state={dashboardState} />
     </PageWrapper>
   );
 };

@@ -5,7 +5,9 @@ import TrendingVideoCard from "../TrendingVideoCard";
 import { TrendingVideos } from "./styledComponents";
 import Loader from "../../Common/Loader";
 import RenderFailure from "../../Common/FailurePage";
-import { useDashboardMachine } from "../DashboardMachineWrapper";
+import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useSelector } from "@xstate/react";
 
 export const RenderTrendingVideos = ({ state, send }: any) => {
   const { trendingError, trendingVideosArray } = state.context;
@@ -25,10 +27,13 @@ export const RenderTrendingVideos = ({ state, send }: any) => {
 };
 
 const Trending = () => {
-  const { state, send } = useDashboardMachine();
+  // const { state, send } = useDashboardMachine();
+  const {dashboardActor}=useNxtwatchContext();
+  const dashboardState=useSelector(dashboardActor,(state:any)=>state)
+
   useEffect(() => {
-    if (state.context.trendingVideosArray.length === 0) {
-      send({ type: "FETCH_TRENDING" });
+    if (dashboardState.context.trendingVideosArray.length === 0) {
+      dashboardActor.send({ type: "FETCH_TRENDING" });
     }
   }, []);
 
@@ -36,7 +41,7 @@ const Trending = () => {
     <PageWrapper>
       <RouteHeader routeName={"Trending"} />
       <TrendingVideos>
-        <RenderTrendingVideos state={state} send={send} />
+        <RenderTrendingVideos state={dashboardState} send={dashboardActor.send} />
       </TrendingVideos>
     </PageWrapper>
   );

@@ -20,8 +20,10 @@ import { DislikeIcon, LikeIcon, SavedIcon } from "../../Common/Icons";
 import { Para } from "../Footer/styledComponents";
 import Loader from "../../Common/Loader";
 import { DurationFinder } from "../../Services/DateFormating";
-import { useDashboardMachine } from "../DashboardMachineWrapper";
+import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import RenderFailure from "../../Common/FailurePage";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useSelector } from "@xstate/react";
 
 type LikeStatus = "liked" | "disliked" | "";
 
@@ -30,8 +32,10 @@ const checkSaved = (id: any, state: any) => {
 };
 
 const VideoDetails = () => {
-  const { state, send } = useDashboardMachine();
-  const { videoDetails, videoDetailsError } = state.context;
+  // const { state, send } = useDashboardMachine();
+      const {dashboardActor}=useNxtwatchContext();
+      const dashboardState=useSelector(dashboardActor,(state:any)=>state)
+  const { videoDetails, videoDetailsError } = dashboardState.context;
   const { id } = useParams();
 
   const [likeStatus, setLikeStatus] = useState<LikeStatus>("");
@@ -39,13 +43,13 @@ const VideoDetails = () => {
 
   useEffect(() => {
     if (id) {
-      send({ type: "FETCH_DETAILS", id: id });
+      dashboardActor.send({ type: "FETCH_DETAILS", id: id });
     }
   }, [id]);
 
   useEffect(() => {
     if (videoDetails?.id) {
-      const saved = checkSaved(id, state);
+      const saved = checkSaved(id, dashboardState);
       setIsSaved(saved);
     }
   }, [videoDetails]);
@@ -54,7 +58,7 @@ const VideoDetails = () => {
     return <Loader />;
   } else if (videoDetailsError !== "") {
     return (
-      <RenderFailure onRetry={() => send({ type: "FETCH_DETAILS", id: id })} />
+      <RenderFailure onRetry={() => dashboardActor.send({ type: "FETCH_DETAILS", id: id })} />
     );
   } else {
     const {
@@ -77,11 +81,11 @@ const VideoDetails = () => {
     const handleSave = () => {
       if (!videoDetails?.id) return;
 
-      if (checkSaved(id, state)) {
-        send({ type: "REMOVE_SAVED", id: id });
+      if (checkSaved(id, dashboardState)) {
+        dashboardActor.send({ type: "REMOVE_SAVED", id: id });
         setIsSaved(false);
       } else {
-        send({ type: "ADD_SAVED", details: videoDetails });
+        dashboardActor.send({ type: "ADD_SAVED", details: videoDetails });
         setIsSaved(true);
       }
     };

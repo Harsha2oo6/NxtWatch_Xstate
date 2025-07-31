@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import ThemeMachine from "../../Stores/ThemeMachine/themeMachine";
+import ThemeMachine from "../../Machines/ThemeMachine/themeMachine";
 import { useActor } from "@xstate/react";
 
 export const Context = createContext<{
@@ -32,5 +32,5 @@ const ExternalWrapper = ({ children }: any) => {
 export default ExternalWrapper;
 
 export const useThemeMachine = () => {
-  return useContext(Context);
+  // return useContext(Context);
 };

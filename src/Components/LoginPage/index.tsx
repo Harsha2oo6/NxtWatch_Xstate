@@ -14,20 +14,34 @@ import {
 } from "./styledComponents";
 import { DarkThemeLogo, LightThemeLogo } from "../../Common/Images";
 import ThemeTogler from "../../Common/ThemeToggler";
-import { useLoginMachine } from "../LoginMachineWrapper";
+import { useLoginMachine } from "../../Hocs/LoginMachineWrapper";
 import { useNavigate } from "react-router-dom";
-import { useThemeMachine } from "../ExternalWrapper";
+import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useActor, useSelector } from "@xstate/react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { loginState, send } = useLoginMachine();
-  const { isDark } = useThemeMachine();
+
+  const { themeActor,loginActor,isDark } = useNxtwatchContext();
+
+  // console.log(themeActor)
+
+  // const themeContext = useSelector(themeActor, (state: any) => state.context);
+  // console.log(themeContext);
+
+  const newloginState = useSelector(loginActor, (state: any) => state);
+  // console.log(newloginState);
+
+  // const {  send } = useLoginMachine();
+  // const { isDark } = useThemeMachine();
+
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
-    send({ type: "LOGIN" });
+    loginActor.send({ type: "LOGIN" });
   };
-  if (loginState.matches("LoggedIn")) {
+  if (newloginState.matches("LoggedIn")) {
     navigate("/", { replace: true });
   }
   return (
@@ -47,18 +61,18 @@ const LoginPage = () => {
             id="username"
             placeholder="Username"
             onChange={(e) =>
-              send({ type: "SET_USERNAME", value: e.target.value })
+              loginActor.send({ type: "SET_USERNAME", value: e.target.value })
             }
           />
         </InputWrapper>
         <InputWrapper>
           <LabelElement htmlFor="password">PASSWORD</LabelElement>
           <LoginIputBar
-            type={loginState.context.showPassword ? "text" : "password"}
+            type={newloginState.context.showPassword ? "text" : "password"}
             placeholder="Password"
             id="password"
             onChange={(e) =>
-              send({ type: "SET_PASSWORD", value: e.target.value })
+              loginActor.send({ type: "SET_PASSWORD", value: e.target.value })
             }
           />
         </InputWrapper>
@@ -66,13 +80,13 @@ const LoginPage = () => {
           <CheckBox
             id="showpass"
             type="checkbox"
-            onChange={() => send({ type: "SHOW_PASSWORD" })}
+            onChange={() => loginActor.send({ type: "SHOW_PASSWORD" })}
           />
           <LabelElement htmlFor="showpass">Show Password</LabelElement>
         </ShowPassWrapper>
         <LoginButton type="submit">Login</LoginButton>
-        {loginState.context.error && (
-          <ErrorTag>{loginState.context.error}</ErrorTag>
+        {newloginState.context.error && (
+          <ErrorTag>{newloginState.context.error}</ErrorTag>
         )}
       </FormWrapper>
     </LoginPageWrapper>

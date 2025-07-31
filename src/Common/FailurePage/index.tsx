@@ -6,14 +6,15 @@ import {
   FailureWrapper,
 } from "./styledComponents";
 import { RetryButton } from "../NoVideosFound/styledComponents";
-import { useThemeMachine } from "../../Components/ExternalWrapper";
+import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 
 type RenderFailureProps = {
   onRetry: () => void;
 };
 
 const RenderFailure = ({ onRetry }: RenderFailureProps) => {
-  const { isDark } = useThemeMachine();
+  const { isDark } = useNxtwatchContext();
   return (
     <FailureWrapper>
       <FailureImage

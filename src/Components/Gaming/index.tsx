@@ -5,8 +5,10 @@ import GamingView from "../GamingVideoCard";
 import Loader from "../../Common/Loader";
 import RenderFailure from "../../Common/FailurePage";
 import { GamingVideos } from "./styledComponents";
-import { useDashboardMachine } from "../DashboardMachineWrapper";
+import { useDashboardMachine } from "../../Hocs/DashboardMachineWrapper";
 import { RenderNoVideosView } from "../../Common/NoVideosFound";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useSelector } from "@xstate/react";
 
 export const RenderGamingVideos = ({ state, send }: any) => {
   const { gamingError, gamingVideosArray } = state.context;
@@ -28,10 +30,12 @@ export const RenderGamingVideos = ({ state, send }: any) => {
 };
 
 const Gaming = () => {
-  const { state, send } = useDashboardMachine();
+  // const { state, send } = useDashboardMachine();
+    const {dashboardActor}=useNxtwatchContext();
+    const dashboardState=useSelector(dashboardActor,(state:any)=>state)
   useEffect(() => {
-    if (state.context.gamingVideosArray.length === 0) {
-      send({ type: "FETCH_GAMING" });
+    if (dashboardState.context.gamingVideosArray.length === 0) {
+      dashboardActor.send({ type: "FETCH_GAMING" });
     }
   }, []);
 
@@ -39,7 +43,7 @@ const Gaming = () => {
     <PageWrapper>
       <RouteHeader routeName="Gaming" />
       <GamingVideos>
-        <RenderGamingVideos state={state} send={send} />
+        <RenderGamingVideos state={dashboardState} send={dashboardActor.send} />
       </GamingVideos>
     </PageWrapper>
   );

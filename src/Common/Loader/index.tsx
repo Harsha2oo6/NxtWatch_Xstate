@@ -1,6 +1,7 @@
 import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
-import { useThemeMachine } from "../../Components/ExternalWrapper";
+import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 
 const LoaderWrapper = styled.div`
   min-height: 50vh;
@@ -12,7 +13,7 @@ const LoaderWrapper = styled.div`
 `;
 
 const Loader = () => {
-  const { isDark } = useThemeMachine();
+  const { isDark } = useNxtwatchContext()
   return (
     <LoaderWrapper>
       <BeatLoader size={13} color={isDark ? "white" : "#000"} />

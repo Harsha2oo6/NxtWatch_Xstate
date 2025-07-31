@@ -1,12 +1,14 @@
 import { DarkmodeIcon, LightmodeIcon } from "../../Common/Icons";
 import { ThemeButton } from "./styledComponents";
 
-import { useThemeMachine } from "../../Components/ExternalWrapper";
+import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
+import { useSelector } from "@xstate/react";
 
 const ThemeTogler = () => {
-  const { isDark, toggle } = useThemeMachine();
+  const { themeActor,isDark}=useNxtwatchContext();
   return (
-    <ThemeButton onClick={toggle}>
+    <ThemeButton onClick={()=>themeActor.send({type:"toggle"})}>
       {isDark ? <LightmodeIcon /> : <DarkmodeIcon />}
     </ThemeButton>
   );

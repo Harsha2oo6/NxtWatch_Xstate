@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { useMachine } from "@xstate/react";
-import { dashboardMachineConfig } from "../../Stores/DashboardMachine/dashboardMachine";
+import { dashboardMachineConfig } from "../../Machines/DashboardMachine/dashboardMachine";
 
 export const Dashboardcontext = createContext<{
   state: any;
@@ -20,5 +20,5 @@ const DashboardMachineWrapper = ({ children }: any) => {
 export default DashboardMachineWrapper;
 
 export const useDashboardMachine = () => {
-  return useContext(Dashboardcontext);
+  // return useContext(Dashboardcontext);
 };

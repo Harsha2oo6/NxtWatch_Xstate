@@ -3,8 +3,8 @@ import SideNavBar from "../../Components/Sidenavbar";
 import { LayoutWrapper, NavContentWrapper } from "./styledComponents";
 import type { JSX } from "react/jsx-runtime";
 import { useLocation } from "react-router-dom";
-import LoginMachinewrapper from "../../Components/LoginMachineWrapper";
-import DashboardMachineWrapper from "../../Components/DashboardMachineWrapper";
+import LoginMachinewrapper from "../LoginMachineWrapper";
+import DashboardMachineWrapper from "../DashboardMachineWrapper";
 
 type props = {
   children: JSX.Element;
