@@ -8,7 +8,7 @@ import { useSelector } from "@xstate/react";
 const ThemeTogler = () => {
   const { themeActor,isDark}=useNxtwatchContext();
   return (
-    <ThemeButton onClick={()=>themeActor.send({type:"toggle"})}>
+    <ThemeButton data-testid="themeToggler" onClick={()=>themeActor.send({type:"toggle"})}>
       {isDark ? <LightmodeIcon /> : <DarkmodeIcon />}
     </ThemeButton>
   );

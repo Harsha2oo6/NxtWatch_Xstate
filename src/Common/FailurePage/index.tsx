@@ -15,7 +15,7 @@ type RenderFailureProps = {
 const RenderFailure = ({ onRetry }: RenderFailureProps) => {
   const { isDark } = useNxtwatchContext();
   return (
-    <FailureWrapper>
+    <FailureWrapper data-testid="failurepage">
       <FailureImage
         src={
           isDark

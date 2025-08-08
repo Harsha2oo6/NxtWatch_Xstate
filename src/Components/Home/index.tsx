@@ -64,7 +64,7 @@ const Home = () => {
           type="search"
           onChange={(e) => dashboardActor.send({ type: "SET_QUERY", value: e.target.value })}
         />
-        <SearchButton onClick={() => dashboardActor.send({ type: "FETCH_HOME" })}>
+        <SearchButton data-testid="searchbtn" onClick={() => dashboardActor.send({ type: "FETCH_HOME" })}>
           <SearchIcon />
         </SearchButton>
       </SearchWrapper>

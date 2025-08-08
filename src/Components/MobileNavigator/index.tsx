@@ -11,12 +11,12 @@ const MobileNavigator = () => {
       position="bottom right"
       arrow={false}
       trigger={
-        <MenuButton>
+        <MenuButton data-testid="menu">
           <AiOutlineMenu />
         </MenuButton>
       }
     >
-      <Menu>
+      <Menu data-testid="menucard">
         <MenuItem onClick={() => navigate("/")}>Home</MenuItem>
         <MenuItem onClick={() => navigate("/trending")}>Trending</MenuItem>
         <MenuItem onClick={() => navigate("/gaming")}>Gaming</MenuItem>
