@@ -74,9 +74,13 @@ export const loginMachineConfig = createMachine({
           target: "LoggedIn",
           actions: assign({
             token: ({ event, context }) => {
-              Cookies.set("jwt_token", event.output.jwt_token);
-              Cookies.set("username", context.username);
-              return event.output.jwt_token;
+              const jwt = event.output?.jwt_token;
+              if (jwt) {
+                Cookies.set("jwt_token", jwt);
+                Cookies.set("username", context.username);
+                return jwt;
+              }
+              return "";
             },
           }),
         },

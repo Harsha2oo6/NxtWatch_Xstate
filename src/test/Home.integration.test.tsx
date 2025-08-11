@@ -110,10 +110,10 @@ describe("Home Integration (with mocked XState context)", () => {
           {
             id: "1",
             title: "Video 1",
-            thumbnail_url: "",
-            view_count: "",
+            thumbnail_url: "hth",
+            view_count: "tteh",
             published_at: "2 NOV 2006",
-            channel: { name: "", profile_image_url: "" },
+            channel: { name: "eth", profile_image_url: "eth" },
           },
         ],
         homeError: "",

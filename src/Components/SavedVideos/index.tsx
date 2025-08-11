@@ -20,15 +20,16 @@ export const RenderSavedVideos = ({ videos }: any) => {
   );
 };
 const SavedVideos = () => {
-    const {dashboardActor}=useNxtwatchContext();
-    const dashboardState=useSelector(dashboardActor,(state:any)=>state)
-  return (
-    <PageWrapper>
-      <RouteHeader routeName={"Saved Videos"} />
-      <TrendingVideos>
-        <RenderSavedVideos videos={dashboardState.context.savedVideosArray} />
-      </TrendingVideos>
-    </PageWrapper>
-  );
+    const nxtwatchContext = useNxtwatchContext() || {};
+    const { dashboardActor } = nxtwatchContext;
+    const dashboardState = useSelector(dashboardActor, (state: any) => state);
+    return (
+        <PageWrapper>
+            <RouteHeader routeName={"Saved Videos"} />
+            <TrendingVideos>
+                <RenderSavedVideos videos={dashboardState?.context?.savedVideosArray ?? []} />
+            </TrendingVideos>
+        </PageWrapper>
+    );
 };
 export default SavedVideos;

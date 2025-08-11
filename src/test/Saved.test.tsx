@@ -45,18 +45,18 @@ describe("SavedVideos Integration (with mocked XState context)", () => {
           {
             id: "1",
             title: "Saved Video 1",
-            thumbnail_url: "",
-            view_count: "",
+            thumbnail_url: "yj",
+            view_count: "yrf",
             published_at: "2 NOV 2006",
-            channel: { name: "Channel 1", profile_image_url: "" },
+            channel: { name: "Channel 1", profile_image_url: "yrfn" },
           },
           {
             id: "2",
             title: "Saved Video 2",
-            thumbnail_url: "",
-            view_count: "",
+            thumbnail_url: "trjn",
+            view_count: "trhetd",
             published_at: "3 NOV 2006",
-            channel: { name: "Channel 2", profile_image_url: "" },
+            channel: { name: "Channel 2", profile_image_url: "tghn" },
           },
         ],
       },
@@ -83,18 +83,18 @@ describe("SavedVideos Integration (with mocked XState context)", () => {
           {
             id: "1",
             title: "Card Video 1",
-            thumbnail_url: "",
-            view_count: "",
+            thumbnail_url: "yj",
+            view_count: "yrj",
             published_at: "2 NOV 2006",
-            channel: { name: "Channel 1", profile_image_url: "" },
+            channel: { name: "Channel 1", profile_image_url: "rtg" },
           },
           {
             id: "2",
             title: "Card Video 2",
-            thumbnail_url: "",
-            view_count: "",
+            thumbnail_url: "t",
+            view_count: "drtg",
             published_at: "3 NOV 2006",
-            channel: { name: "Channel 2", profile_image_url: "" },
+            channel: { name: "Channel 2", profile_image_url: "tdg" },
           },
         ],
       },
@@ -121,9 +121,7 @@ describe("SavedVideos Integration (with mocked XState context)", () => {
     renderWithMockContext(state);
     expect(screen.getByText(/No Saved Videos/i)).toBeInTheDocument();
   });
-
-  it("should render safely when dashboardActor is null or context is undefined", () => {
-    // Case 1: dashboardActor is null
+  it("should render safely when dashboardActor is null", () => {
     render(
       <NxtwatchContext.Provider
         value={{
@@ -139,8 +137,9 @@ describe("SavedVideos Integration (with mocked XState context)", () => {
       </NxtwatchContext.Provider>
     );
     expect(screen.getByText("Saved Videos")).toBeInTheDocument();
+  });
 
-    // Case 2: useNxtwatchContext returns undefined
+  it("should render safely when useNxtwatchContext returns undefined", () => {
     render(
       <NxtwatchContext.Provider value={undefined as any}>
         <MemoryRouter>
@@ -148,6 +147,6 @@ describe("SavedVideos Integration (with mocked XState context)", () => {
         </MemoryRouter>
       </NxtwatchContext.Provider>
     );
-    expect(screen.getByText("Saved Videos")).toBeInTheDocument();
+    expect(screen.getByText("No Saved Videos Found")).toBeInTheDocument();
   });
 });
