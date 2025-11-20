@@ -59,7 +59,7 @@ const LoginPage = () => {
           <LoginIputBar
             type="text"
             id="username"
-            placeholder="Username"
+            placeholder="rahul"
             onChange={(e) =>
               loginActor.send({ type: "SET_USERNAME", value: e.target.value })
             }
@@ -69,7 +69,7 @@ const LoginPage = () => {
           <LabelElement htmlFor="password">PASSWORD</LabelElement>
           <LoginIputBar
             type={newloginState.context.showPassword ? "text" : "password"}
-            placeholder="Password"
+            placeholder="rahul@2021"
             id="password"
             onChange={(e) =>
               loginActor.send({ type: "SET_PASSWORD", value: e.target.value })
