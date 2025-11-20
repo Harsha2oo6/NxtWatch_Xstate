@@ -1,4 +1,5 @@
-import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+// import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
 import { PagenotfoundDark, PagenotfoundLight } from "../Images";
 import {
   PageContainer,
@@ -9,7 +10,7 @@ import {
 } from "./styledComponents";
 
 const PageNotFound = () => {
-  const { isDark } = useThemeMachine();
+  const { isDark } = useNxtwatchContext();
 
   const imageUrl = isDark ? PagenotfoundDark : PagenotfoundLight;
 

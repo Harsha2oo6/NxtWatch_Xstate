@@ -2,8 +2,8 @@ import { ThemeProvider } from "styled-components";
 import Layout from "./Hocs/Layout";
 import { GlobalStyle } from "./Hocs/Layout/styledComponents";
 import AppRoutes from "./Routes";
-import { useThemeMachine } from "./Hocs/ExternalWrapper";
-import { useMachine, useSelector } from "@xstate/react";
+// import { useThemeMachine } from "./Hocs/ExternalWrapper";
+// import { useMachine, useSelector } from "@xstate/react";
 import { useNxtwatchContext } from "./Hocs/NxtwatchMachineWrapper";
 
 

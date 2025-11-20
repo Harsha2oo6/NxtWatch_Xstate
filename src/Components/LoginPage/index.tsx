@@ -14,16 +14,16 @@ import {
 } from "./styledComponents";
 import { DarkThemeLogo, LightThemeLogo } from "../../Common/Images";
 import ThemeTogler from "../../Common/ThemeToggler";
-import { useLoginMachine } from "../../Hocs/LoginMachineWrapper";
+// import { useLoginMachine } from "../../Hocs/LoginMachineWrapper";
 import { useNavigate } from "react-router-dom";
-import { useThemeMachine } from "../../Hocs/ExternalWrapper";
+// import { useThemeMachine } from "../../Hocs/ExternalWrapper";
 import { useNxtwatchContext } from "../../Hocs/NxtwatchMachineWrapper";
-import { useActor, useSelector } from "@xstate/react";
+import {  useSelector } from "@xstate/react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const { themeActor,loginActor,isDark } = useNxtwatchContext();
+  const { loginActor,isDark } = useNxtwatchContext();
 
   // console.log(themeActor)
 
